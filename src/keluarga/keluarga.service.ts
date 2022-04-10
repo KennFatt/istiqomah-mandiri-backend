@@ -12,15 +12,19 @@ export class KeluargaService {
     return `This action returns all keluarga`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} keluarga`;
+  findOne(no_induk: string) {
+    return `This action returns a #${no_induk} keluarga`;
   }
 
-  update(id: number, updateKeluargaDto: UpdateKeluargaDto) {
-    return `This action updates a #${id} keluarga`;
+  update(no_induk: string, updateKeluargaDto: UpdateKeluargaDto) {
+    return `This action updates a #${no_induk} keluarga`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} keluarga`;
+  remove(no_induk: string) {
+    return `This action removes a #${no_induk} keluarga`;
+  }
+
+  findAnggotaKeluarga(no_induk: string) {
+    return `This action retrieve anggota keluarga from #${no_induk} keluarga`;
   }
 }

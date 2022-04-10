@@ -25,21 +25,26 @@ export class KeluargaController {
     return this.keluargaService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.keluargaService.findOne(+id);
+  @Get(':no_induk')
+  findOne(@Param('no_induk') no_induk: string) {
+    return this.keluargaService.findOne(no_induk);
   }
 
-  @Patch(':id')
+  @Patch(':no_induk')
   update(
-    @Param('id') id: string,
+    @Param('no_induk') no_induk: string,
     @Body() updateKeluargaDto: UpdateKeluargaDto,
   ) {
-    return this.keluargaService.update(+id, updateKeluargaDto);
+    return this.keluargaService.update(no_induk, updateKeluargaDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.keluargaService.remove(+id);
+  remove(@Param('id') no_induk: string) {
+    return this.keluargaService.remove(no_induk);
+  }
+
+  @Get(':no_induk/anggota')
+  findAnggotaKeluarga(@Param('no_induk') no_induk: string) {
+    return this.keluargaService.findAnggotaKeluarga(no_induk);
   }
 }
