@@ -1,10 +1,18 @@
-import { Module } from '@nestjs/common';
+import { Module, Provider, ValidationPipe } from '@nestjs/common';
+import { APP_PIPE } from '@nestjs/core';
 import { KeluargaModule } from './keluarga/keluarga.module';
-import { PrismaService } from './services/prisma.service';
+import { PrismaModule } from './prisma/prisma.module';
+
+const validationPipeProvider: Provider = {
+  provide: APP_PIPE,
+  useValue: new ValidationPipe({
+    whitelist: true,
+  }),
+};
 
 @Module({
-  imports: [KeluargaModule],
+  imports: [PrismaModule, KeluargaModule],
   controllers: [],
-  providers: [PrismaService],
+  providers: [validationPipeProvider],
 })
 export class AppModule {}
