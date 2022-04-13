@@ -21,7 +21,7 @@ model Keluarga {
   is_registered Boolean @default(false)
 
   created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  updated_at DateTime @default(now()) @updatedAt
 
 
   kepala_keluarga AnggotaKeluarga?
@@ -42,7 +42,7 @@ model AnggotaKeluarga {
   death_date DateTime?
 
   created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  updated_at DateTime @default(now()) @updatedAt
 }
 
 enum Gender {
