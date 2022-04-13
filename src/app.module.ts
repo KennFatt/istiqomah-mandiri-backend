@@ -2,6 +2,7 @@ import { Module, Provider, ValidationPipe } from '@nestjs/common';
 import { APP_PIPE } from '@nestjs/core';
 import { KeluargaModule } from './keluarga/keluarga.module';
 import { PrismaModule } from './prisma/prisma.module';
+import { AnggotaKeluargaModule } from './anggota-keluarga/anggota-keluarga.module';
 
 const validationPipeProvider: Provider = {
   provide: APP_PIPE,
@@ -11,7 +12,7 @@ const validationPipeProvider: Provider = {
 };
 
 @Module({
-  imports: [PrismaModule, KeluargaModule],
+  imports: [PrismaModule, KeluargaModule, AnggotaKeluargaModule],
   controllers: [],
   providers: [validationPipeProvider],
 })
