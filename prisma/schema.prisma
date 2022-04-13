@@ -42,7 +42,7 @@ model AnggotaKeluarga {
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
 
-  keluarga           Keluarga @relation(fields: [keluarga_id], references: [id])
+  keluarga           Keluarga @relation(fields: [keluarga_id], references: [id], onDelete: Cascade)
   keluarga_id        Int
   is_kepala_keluarga Boolean  @default(false)
 
