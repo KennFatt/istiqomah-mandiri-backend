@@ -38,8 +38,8 @@ model AnggotaKeluarga {
   phone_number String
 
   is_alive   Boolean
-  birth_date DateTime
-  death_date DateTime
+  birth_date DateTime?
+  death_date DateTime?
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
