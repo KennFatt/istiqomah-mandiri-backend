@@ -23,15 +23,13 @@ model Keluarga {
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
 
+  AnggotaKeluarga AnggotaKeluarga[]
 
-  kepala_keluarga AnggotaKeluarga?
+  @@index([no_induk])
 }
 
 model AnggotaKeluarga {
   id Int @id @default(autoincrement())
-
-  keluarga    Keluarga @relation(fields: [keluarga_id], references: [id])
-  keluarga_id Int      @unique
 
   name         String
   gender       Gender
@@ -43,6 +41,12 @@ model AnggotaKeluarga {
 
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
+
+  keluarga           Keluarga @relation(fields: [keluarga_id], references: [id])
+  keluarga_id        Int
+  is_kepala_keluarga Boolean  @default(false)
+
+  @@index([name])
 }
 
 enum Gender {
