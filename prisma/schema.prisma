@@ -46,7 +46,7 @@ model AnggotaKeluarga {
   keluarga_id        Int
   is_kepala_keluarga Boolean  @default(false)
 
-  @@index([name])
+  @@index([name, keluarga_id])
 }
 
 enum Gender {
