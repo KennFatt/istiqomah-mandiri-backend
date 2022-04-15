@@ -1,6 +1,6 @@
 import {
   IsBoolean,
-  IsDate,
+  IsDateString,
   IsIn,
   IsNumber,
   IsOptional,
@@ -21,16 +21,17 @@ export class CreateAnggotaKeluargaDto {
   is_alive: boolean;
 
   @IsOptional()
-  @IsDate()
-  birth_date: Date | undefined;
+  @IsDateString()
+  birth_date: string | undefined;
 
   @IsOptional()
-  @IsDate()
-  death_date: Date | undefined;
+  @IsDateString()
+  death_date: string | undefined;
 
   @IsNumber()
   keluarga_id: number;
 
+  @IsOptional()
   @IsBoolean()
   is_kepala_keluarga: boolean = false;
 }
