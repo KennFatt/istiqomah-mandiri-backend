@@ -8,14 +8,11 @@ async function seed() {
   /** Create 50 record of Keluarga */
   await prisma.keluarga.createMany({
     skipDuplicates: true,
-    data: Array(51)
+    data: Array(50)
       .fill(0)
-      .map(() => {
+      .map((_, index) => {
         return {
-          no_induk: chance.string({
-            length: 3,
-            numeric: true,
-          }),
+          no_induk: `00${++index}`,
           no_kk: chance.string({
             length: 16,
             numeric: true,
