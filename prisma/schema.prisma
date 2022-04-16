@@ -11,14 +11,24 @@ datasource db {
 }
 
 model Keluarga {
-  id       Int    @id @default(autoincrement())
+  id Int @id @default(autoincrement())
+
+  // Unique identifier untuk setiap keluarga.
+  // Nomor ini akan diberikan kepada setiap kepala keluarga
+  //  dan digunakan untuk melihat informasi keluarga mereka
+  //  pada program Istiqomah Mandiri.
   no_induk String @unique
 
+  // Nomor KK kepala keluarga
   no_kk   String? @unique @db.VarChar(16)
+  // Nomor NIK kepala keluarga
   no_nik  String? @unique @db.VarChar(16)
   address String?
 
-  is_registered Boolean @default(false)
+  // Sudah atau belum melunasi uang pembayran
+  is_registered Boolean   @default(false)
+  // Tanggal membayar uang pendaftaran
+  registered_at DateTime?
 
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
@@ -33,17 +43,26 @@ model AnggotaKeluarga {
 
   name         String
   gender       Gender
-  phone_number String
+  phone_number String?
 
+  // Apakah masih hidup atau sudah meninggal dunia
   is_alive   Boolean
   birth_date DateTime?
   death_date DateTime?
+
+  // Apakah sudah tercover oleh program Istiqomah Mandiri atau belum.
+  // Jika nilai ini true, maka `death_date` harus defined.
+  is_covered Boolean?
+  // Kapan bantuan dilaksanakan oleh panitia Istiqomah Mandiri.
+  covered_at DateTime?
 
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
 
   keluarga           Keluarga @relation(fields: [keluarga_id], references: [id], onDelete: Cascade)
   keluarga_id        Int
+  // Istilah kepala keluarga adalah untuk orang yang bertanggung jawab
+  //  pada suatu keluarga saat ini (a.k.a PIC).
   is_kepala_keluarga Boolean  @default(false)
 
   @@index([name])
